@@ -30,7 +30,7 @@ namespace BricksBallCrusher
             Random r = new Random();            
             Angle = r.NextDouble() * 2 * Math.PI;
 
-            while (Angle <= Math.PI)
+            while (Angle <= 0.15*2*Math.PI && Angle >= 0.3*2*Math.PI)
             {
                 Angle = r.NextDouble() * 2 * Math.PI;
             }
@@ -78,8 +78,6 @@ namespace BricksBallCrusher
             if (nextY >= btm)
             {                
                 isNewGame = true;
-               
-
             }
             Center = new Point(nextX, nextY);
         }

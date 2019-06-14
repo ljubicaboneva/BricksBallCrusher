@@ -23,3 +23,16 @@ C:\Users\user\Desktop\BricksBallCrusher-master\BricksBallCrusher\bin\Debug\Brick
 C:\Users\user\Desktop\BricksBallCrusher-master\BricksBallCrusher\bin\Debug\BricksBallCrusher.exe
 C:\Users\user\Desktop\BricksBallCrusher-master\BricksBallCrusher\bin\Debug\BricksBallCrusher.pdb
 C:\Users\user\Desktop\BricksBallCrusher-master\BricksBallCrusher\obj\Debug\BricksBallCrusher.BonusLevel.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.exe.config
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.exe
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.pdb
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.BonusLevel.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.FinalScore.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.Form1.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.Menu.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.Properties.Resources.resources
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.exe
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.pdb
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csprojAssemblyReference.cache

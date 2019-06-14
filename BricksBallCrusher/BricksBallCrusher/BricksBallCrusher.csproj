@@ -113,9 +113,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bomba.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\back1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BonusRound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,6 +32,7 @@
             this.btnNewGame = new System.Windows.Forms.Button();
             this.btnScore = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -44,14 +45,14 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(540, 89);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Bricks Ball Breaker";
+            this.label1.Text = "Bricks Ball Crusher";
             // 
             // btnNewGame
             // 
             this.btnNewGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnNewGame.Font = new System.Drawing.Font("Monotype Corsiva", 12.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNewGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnNewGame.Location = new System.Drawing.Point(166, 192);
+            this.btnNewGame.Location = new System.Drawing.Point(148, 192);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(169, 82);
             this.btnNewGame.TabIndex = 1;
@@ -64,9 +65,9 @@
             this.btnScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnScore.Font = new System.Drawing.Font("Monotype Corsiva", 12.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnScore.Location = new System.Drawing.Point(513, 192);
+            this.btnScore.Location = new System.Drawing.Point(336, 192);
             this.btnScore.Name = "btnScore";
-            this.btnScore.Size = new System.Drawing.Size(169, 88);
+            this.btnScore.Size = new System.Drawing.Size(169, 82);
             this.btnScore.TabIndex = 2;
             this.btnScore.Text = "Your Score";
             this.btnScore.UseVisualStyleBackColor = false;
@@ -78,11 +79,24 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label3.Font = new System.Drawing.Font("Curlz MT", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(281, 43);
+            this.label3.Location = new System.Drawing.Point(263, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(298, 53);
             this.label3.TabIndex = 4;
             this.label3.Text = "Looking for fun?";
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnExit.Font = new System.Drawing.Font("Monotype Corsiva", 12.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnExit.Location = new System.Drawing.Point(522, 192);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(169, 82);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // Menu
             // 
@@ -90,6 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BricksBallCrusher.Properties.Resources.back1;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnScore);
             this.Controls.Add(this.btnNewGame);
@@ -108,5 +123,6 @@
         private System.Windows.Forms.Button btnNewGame;
         private System.Windows.Forms.Button btnScore;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnExit;
     }
 }

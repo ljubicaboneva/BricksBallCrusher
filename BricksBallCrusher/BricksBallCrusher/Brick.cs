@@ -17,7 +17,7 @@ namespace BricksBallCrusher
         public Color Color { get; set; }
         public BonusGame bonus { get; set; }
         public bool isTouched { get; set; }
-        public Image bomba;
+        public Image extra;
         
 
         public Brick(int x,int y)
@@ -26,7 +26,7 @@ namespace BricksBallCrusher
             X = x;
             Y = y;
             isTouched=false;
-            bomba = Resources.Bomba;
+            extra = Resources.star1;
             bonus = new BonusGame();
            
         }
@@ -41,7 +41,7 @@ namespace BricksBallCrusher
         public void DrawImage(Graphics g)
         {
 
-            g.DrawImageUnscaled(bomba, X, Y, Width, Height);
+            g.DrawImageUnscaled(extra, X, Y, Width, Height);
             
         }
 

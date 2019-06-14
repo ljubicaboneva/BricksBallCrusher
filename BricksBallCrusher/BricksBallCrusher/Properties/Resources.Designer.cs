@@ -83,9 +83,9 @@ namespace BricksBallCrusher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bomba {
+        internal static System.Drawing.Bitmap BonusRound {
             get {
-                object obj = ResourceManager.GetObject("Bomba", resourceCulture);
+                object obj = ResourceManager.GetObject("BonusRound", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace BricksBallCrusher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BonusRound {
+        internal static System.Drawing.Bitmap star1 {
             get {
-                object obj = ResourceManager.GetObject("BonusRound", resourceCulture);
+                object obj = ResourceManager.GetObject("star1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -53,9 +53,8 @@
             this.lblScore.ForeColor = System.Drawing.Color.Navy;
             this.lblScore.Location = new System.Drawing.Point(387, 145);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(128, 62);
+            this.lblScore.Size = new System.Drawing.Size(0, 62);
             this.lblScore.TabIndex = 1;
-            this.lblScore.Text = "label1";
             // 
             // button1
             // 

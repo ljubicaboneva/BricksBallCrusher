@@ -32,8 +32,10 @@
             this.lblLives = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
-            this.lblTwo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblMore = new System.Windows.Forms.Label();
+            this.lblTwo = new System.Windows.Forms.Label();
+            this.lblMenu = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -74,27 +76,47 @@
             this.lblPoints.Size = new System.Drawing.Size(0, 32);
             this.lblPoints.TabIndex = 3;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Curlz MT", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(612, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 27);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "HELP:";
+            // 
+            // lblMore
+            // 
+            this.lblMore.AutoSize = true;
+            this.lblMore.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMore.Location = new System.Drawing.Point(740, 15);
+            this.lblMore.Name = "lblMore";
+            this.lblMore.Size = new System.Drawing.Size(70, 27);
+            this.lblMore.TabIndex = 7;
+            this.lblMore.Text = "MORE";
+            // 
             // lblTwo
             // 
             this.lblTwo.AutoSize = true;
-            this.lblTwo.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTwo.Location = new System.Drawing.Point(608, 14);
+            this.lblTwo.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTwo.Location = new System.Drawing.Point(677, 15);
             this.lblTwo.Name = "lblTwo";
             this.lblTwo.Size = new System.Drawing.Size(57, 27);
             this.lblTwo.TabIndex = 5;
             this.lblTwo.Text = "TWO";
             this.lblTwo.Click += new System.EventHandler(this.lblTwo_Click);
             // 
-            // label3
+            // lblMenu
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Curlz MT", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(533, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 27);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "HELP:";
+            this.lblMenu.AutoSize = true;
+            this.lblMenu.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMenu.Location = new System.Drawing.Point(394, 15);
+            this.lblMenu.Name = "lblMenu";
+            this.lblMenu.Size = new System.Drawing.Size(72, 27);
+            this.lblMenu.TabIndex = 8;
+            this.lblMenu.Text = "MENU";
+            this.lblMenu.Click += new System.EventHandler(this.lblMenu_Click);
             // 
             // Form1
             // 
@@ -102,6 +124,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(837, 487);
+            this.Controls.Add(this.lblMenu);
+            this.Controls.Add(this.lblMore);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblTwo);
             this.Controls.Add(this.lblPoints);
@@ -125,8 +149,10 @@
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPoints;
-        private System.Windows.Forms.Label lblTwo;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMore;
+        private System.Windows.Forms.Label lblTwo;
+        private System.Windows.Forms.Label lblMenu;
     }
 }
 

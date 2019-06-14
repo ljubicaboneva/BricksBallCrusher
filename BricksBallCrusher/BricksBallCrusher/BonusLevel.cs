@@ -27,6 +27,8 @@ namespace BricksBallCrusher
         Game game;
         Timer TimerImg;
         bool image;
+        public static int SetValueForPoints = 0;
+
         public BonusLevel()
         {
             InitializeComponent();
@@ -53,28 +55,29 @@ namespace BricksBallCrusher
             timer2 = new Timer();
             timer2.Interval = 1;
             timer2.Tick += new EventHandler(timer2_Tick);
-           
+
 
             TimerImg = new Timer();
             TimerImg.Interval = 1500;
             TimerImg.Tick += new EventHandler(timerImg_Tick);
             TimerImg.Start();
             BackgroundImage = Resources.BonusRound;
-
-        }
+       }
 
         private void timerImg_Tick(object sender, EventArgs e)
         {
-            image = false;
-            timer.Start();
-            timer2.Start();
-            Invalidate(true);
+            try
+            {
+                image = false;
+                timer.Start();
+                timer2.Start();
+                Invalidate(true);
+            }
+            catch { }
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
-
-            TimerImg.Stop();
-            Touched();
+            TouchedBonus();
             BonusGame.Delete();
             BackToGame();
             Invalidate(true);
@@ -114,10 +117,12 @@ namespace BricksBallCrusher
         {
             if (ball.isNewGame)
             {
+                SetValueForPoints = BonusGame.PointsBonus;
                 this.DialogResult = DialogResult.OK;
                 ball.isNewGame = false;
                 timer2.Stop();
                 timer.Stop();
+                TimerImg.Stop();
                 this.Close();
             }
         }
@@ -140,7 +145,7 @@ namespace BricksBallCrusher
             Invalidate();
         }
 
-        public void Touched()
+        public void TouchedBonus()
         {
             foreach (Brick b in BonusGame.bricks)
             {

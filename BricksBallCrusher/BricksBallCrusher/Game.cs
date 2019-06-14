@@ -20,6 +20,7 @@ namespace BricksBallCrusher
         public Random random { get; set; }
         public bool ShowImage { get; set; }
         public bool ShowBonus { get; set; }
+        public bool EndGame { get; set; }
 
 
         public Game()
@@ -29,6 +30,7 @@ namespace BricksBallCrusher
             Balls = new List<Ball>();
             bonusGame = new BonusGame();
             flag = 0;
+            EndGame = false;
             ShowBonus = false;
             random = new Random();
             //r = random.Next(0, 54);
@@ -89,6 +91,13 @@ namespace BricksBallCrusher
                 b.Draw(g);
             }
         }
+        public void Move(int left, int top, int width, int height)
+        {
+            foreach(Ball b in Balls)
+            {
+                b.Move(left, top, width, height);
+            }
+        }
 
         public void Draw(Graphics g)
         {
@@ -138,6 +147,10 @@ namespace BricksBallCrusher
 
                         }
                     }
+                }
+                if(Bricks.Count == 0)
+                {
+                EndGame = true;
                 }
         }
         public void ClearBall()

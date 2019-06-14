@@ -17,11 +17,12 @@ namespace BricksBallCrusher
             InitializeComponent();
             lblBestScore.BackColor = Color.Transparent;
             lblScore.BackColor = Color.Transparent;
+            lblScore.Text = Form1.SetValueForFinalePoints.ToString();
         }
 
         private void FinalScore_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -25,12 +25,18 @@ namespace BricksBallCrusher
         int Misses;
         Timer timer2;
         int flag = 0;
+        Timer timer3;
         Ball ball_2;
+        Ball newball;
         bool isBall2;
-        int Count = 1;
+        bool isNewBall;
+        int CountTwo = 1;
+        int CountMore = 0;
         BonusGame bonusGame;
-       
-       
+        int max = 0;
+        public static int SetValueForFinalePoints = 0;
+
+
         public Form1()
         {
             
@@ -39,9 +45,10 @@ namespace BricksBallCrusher
             game = new Game();
             bonusGame = new BonusGame();
             isBall2 = false;
+            isNewBall = false;
 
             timer = new Timer();
-            timer.Interval = 20;
+            timer.Interval = 10;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
@@ -49,6 +56,12 @@ namespace BricksBallCrusher
             timer2.Interval = 1;
             timer2.Tick += new EventHandler(timer2_Tick);
             timer2.Start();
+
+            //timer3 = new Timer();
+            //timer3.Interval = 25;
+            //timer3.Tick += new EventHandler(timer3_Tick);
+            //timer3.Start();
+
 
             leftX = 20;
             topY = 40;
@@ -59,18 +72,23 @@ namespace BricksBallCrusher
             rectangle = new Rectangle(this.Width / 2-40, this.Height - 110);
             Misses = 3;
         }
+        //private void timer3_Tick(object sender, EventArgs e)
+        //{
+        //    CountMore = 0;
+        //    Invalidate(true);
+        //}
 
         private void timer2_Tick(object sender, EventArgs e)
         {
             Touched();
             game.Delete();
             Bonus();
+            EndGame();
             Invalidate(true);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-
             if (isMoved == 1)
             {
                 ball.Move(leftX, topY, width, height);
@@ -78,7 +96,11 @@ namespace BricksBallCrusher
                 {
                     ball_2.Move(leftX, topY, width, height);
                     rectangle.Rejected(ball_2);
-
+                }
+                if (isNewBall)
+                {
+                    newball.Move(leftX, topY, width, height);
+                    rectangle.Rejected(newball);
                 }
                 NewGame();
                 rectangle.Rejected(ball);
@@ -124,7 +146,7 @@ namespace BricksBallCrusher
             {
 
                 game.ClearBall();
-                if (Misses > 1)
+                if (Misses > 1 && !game.EndGame)
                 {
                     
                     ball = new Ball(new Point(this.Width / 2, this.Height - 120));
@@ -132,13 +154,16 @@ namespace BricksBallCrusher
                     isMoved = 0;
                     Misses--;
                 }
-                else
+                else if(game.EndGame || Misses == 0)
                 {
-
-                    timer.Stop();
-                    DialogResult dialogResault = MessageBox.Show("Do you want to play again?", "GAME OVER", MessageBoxButtons.RetryCancel);
+                  
+                    
+                        timer.Stop();
+                        DialogResult dialogResault = MessageBox.Show("Do you want to play again?", "GAME OVER", MessageBoxButtons.RetryCancel);
+                    
                     if (dialogResault == DialogResult.Retry)
                     {
+
                         game.ClearBall();
                         ball = new Ball(new Point(this.Width / 2, this.Height - 120));
                         rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
@@ -151,11 +176,23 @@ namespace BricksBallCrusher
                         game.random = new Random();
                         game.ShowImage = true;
                         game.Points = 0;
-                        Count = 1;
+                        CountTwo = 1;
+                        CountMore = 0;
+                        SetValueForFinalePoints = 0;
 
                     }
                     else
                     {
+                        Menu menu = new Menu();
+                        FinalScore final = new FinalScore();
+                       
+                        if (game.Points >= max)
+                        {
+                            SetValueForFinalePoints = game.Points;
+                            max = SetValueForFinalePoints;
+                        }
+                        this.Hide();
+                        menu.ShowDialog();
                         this.Close();
                     }
                     
@@ -204,13 +241,13 @@ namespace BricksBallCrusher
         
             if (flag == 1)
             {
-                DialogResult result = MessageBox.Show(string.Format("You have earnd {0} extra points!!!",bonusGame.PointsBonus), "BONUS", MessageBoxButtons.OK);
+                DialogResult result = MessageBox.Show(string.Format("You have earnd {0} extra points!!!",BonusLevel.SetValueForPoints), "BONUS", MessageBoxButtons.OK);
                 if (result == DialogResult.OK)
                 {
                     timer.Start();
                     timer2.Start();
                     flag = 0;
-                    game.Points += bonusGame.PointsBonus;
+                    game.Points += BonusLevel.SetValueForPoints;
                 }
                 
             }
@@ -219,18 +256,62 @@ namespace BricksBallCrusher
 
         private void lblTwo_Click(object sender, EventArgs e)
         {
-            if (Count == 1)
+            if (CountTwo == 1 && isMoved == 0)
             {
                 ball_2 = new Ball(new Point(this.Width / 2, this.Height - 120));
                 ball_2.Color = Color.YellowGreen;
                 game.AddBall(ball_2);
                 isBall2 = true;
-                Count--;
+                CountTwo--;
             }
 
             Invalidate();
+        }
 
+        //private void lblMore_Click(object sender, EventArgs e)
+        //{
+        //    while (CountMore == 5)
+        //    {
+        //        newball = new Ball(new Point(this.Width / 2, this.Height - 120));
+        //        newball.Color = Color.YellowGreen;
+        //        newball.Angle = ball.Angle;
+        //        isNewBall = true;
+        //        game.AddBall(newball);
+        //        CountMore++;
 
+        //    }
+        //    Misses--;
+        //    Invalidate();
+        //}
+
+        private void lblMenu_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            DialogResult result = MessageBox.Show("Are you sure you want to end your game?", "Back to Menu?", MessageBoxButtons.YesNo);
+
+            if(result == DialogResult.Yes)
+            {
+
+                if (game.Points >= max)
+                {
+                    SetValueForFinalePoints = game.Points;
+                    max = SetValueForFinalePoints;
+                }
+                timer.Stop();
+                timer2.Stop();
+               // timer3.Stop();
+                this.Hide();
+                menu.ShowDialog();
+                this.Close();
+            }
+         }
+
+        public void EndGame()
+        {
+            if (game.EndGame)
+            {
+                NewGame();
+            }
         }
     }
 }
