@@ -23,7 +23,6 @@ namespace BricksBallCrusher
         Timer timer;
         int isMoved;
         int Misses;
-
         int flag = 0;
         Timer timer3;
         Ball ball_2;
@@ -79,10 +78,10 @@ namespace BricksBallCrusher
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            EndGame();
             Touched();
             game.Delete();
-            Bonus();
-            EndGame();
+            Bonus();            
             if (isMoved == 1)
             {
                 ball.Move(leftX, topY, width, height);
@@ -196,10 +195,9 @@ namespace BricksBallCrusher
                     isBall2 = false;
                 }
 
-            }
+            }            
             lblLives.Text = Misses.ToString();
             lblPoints.Text = game.Points.ToString();
-
         }
 
         
@@ -302,10 +300,10 @@ namespace BricksBallCrusher
 
         public void EndGame()
         {
-            timer.Stop();
-            timer.Start();
+            
             if (game.EndGame)
             {
+                timer.Stop();
                 DialogResult dialogResault = MessageBox.Show(string.Format("Your score is {0}", game.Points), "END GAME", MessageBoxButtons.OK);
                 Menu menu = new Menu();
                 FinalScore final = new FinalScore();
@@ -316,11 +314,21 @@ namespace BricksBallCrusher
                     max = SetValueForFinalePoints;
                 }
                 this.Hide();
-                timer.Stop();
+
                 menu.ShowDialog();
                 this.Close();
-               
+
             }
+
         }
+
+       private void lblMore_Click(object sender, EventArgs e)
+        {
+            rectangle.Width = 120;   
+            
+
+        }
+
+
     }
 }

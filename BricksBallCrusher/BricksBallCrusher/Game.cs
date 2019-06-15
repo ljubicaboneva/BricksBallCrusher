@@ -33,9 +33,8 @@ namespace BricksBallCrusher
             EndGame = false;
             ShowBonus = false;
             random = new Random();
-            //r = random.Next(0, 54);
-            Points = 0;
-            r = 32;
+            r = random.Next(0, 54);
+            Points = 0;          
             ShowImage = true;
         }
 

@@ -64,18 +64,10 @@ namespace BricksBallCrusher
         }
         public void SelectInBonus(Ball ball)
         {
-
             if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
             {
                 isTouched = !isTouched;
             }
-
-           
         }
-
-
-
-
-
     }
 }

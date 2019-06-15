@@ -95,6 +95,7 @@
             this.lblMore.Size = new System.Drawing.Size(70, 27);
             this.lblMore.TabIndex = 7;
             this.lblMore.Text = "MORE";
+            this.lblMore.Click += new System.EventHandler(this.lblMore_Click);
             // 
             // lblTwo
             // 
