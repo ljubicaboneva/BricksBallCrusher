@@ -34,12 +34,14 @@ namespace BricksBallCrusher
         BonusGame bonusGame;
         int max = 0;
         public static int SetValueForFinalePoints = 0;
+        Random randomSuprice;
+        int suprice;
 
 
         public Form1()
         {
 
-            InitializeComponent();
+            InitializeComponent();           
             this.DoubleBuffered = true;
             game = new Game();
             bonusGame = new BonusGame();
@@ -314,7 +316,6 @@ namespace BricksBallCrusher
                     max = SetValueForFinalePoints;
                 }
                 this.Hide();
-
                 menu.ShowDialog();
                 this.Close();
 
@@ -324,9 +325,37 @@ namespace BricksBallCrusher
 
        private void lblMore_Click(object sender, EventArgs e)
         {
-            rectangle.Width = 120;   
+            randomSuprice = new Random();
+            suprice = randomSuprice.Next(1,6);
             
+            if (suprice == 1)
+            {
+                timer.Interval = 20;
+                rectangle.Width = 120;
+                rectangle.Color = Color.Blue;
+            }
+            if(suprice==2)
+            {
+                if (Misses > 1)
+                {
+                    timer.Interval = 20;
+                    Misses--;
+                }
+            }
+            if (suprice == 3)
+            {
+                timer.Interval = 20;
+                rectangle.Color = Color.Red;
+                rectangle.Width = 60;               
+            }
+            if (suprice == 4)
+            {
+                timer.Interval = 100;
+            }
+            if (suprice == 5) {
 
+                Misses++;
+            }
         }
 
 
