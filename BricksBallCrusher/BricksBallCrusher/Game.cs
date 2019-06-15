@@ -14,7 +14,7 @@ namespace BricksBallCrusher
         public BonusGame bonusGame { get; set; }
         public Color CurrentColor { get; set; }
         public int Points { get; set; }
-        
+
         public int flag;
         public int r { get; set; }
         public Random random { get; set; }
@@ -70,7 +70,7 @@ namespace BricksBallCrusher
                 {
                     CurrentColor = Color.Green;
                 }
-                for (int i = 0; i <10; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     Brick brick = new Brick(x, y);
                     brick.Color = CurrentColor;
@@ -86,14 +86,14 @@ namespace BricksBallCrusher
         }
         public void DrawBall(Graphics g)
         {
-            foreach(Ball b in Balls)
+            foreach (Ball b in Balls)
             {
                 b.Draw(g);
             }
         }
         public void Move(int left, int top, int width, int height)
         {
-            foreach(Ball b in Balls)
+            foreach (Ball b in Balls)
             {
                 b.Move(left, top, width, height);
             }
@@ -101,7 +101,7 @@ namespace BricksBallCrusher
 
         public void Draw(Graphics g)
         {
-            for(int i=Bricks.Count-1;i>=0;--i)
+            for (int i = Bricks.Count - 1; i >= 0; --i)
             {
                 if (i == r)
                 {
@@ -109,49 +109,49 @@ namespace BricksBallCrusher
                     {
                         Bricks[i].DrawImage(g);
                     }
-                    else if(!ShowImage)
+                    else if (!ShowImage)
                     {
                         Bricks[i].Draw(g);
-                    }                   
+                    }
                 }
                 else
                 {
                     Bricks[i].Draw(g);
-                }               
-            }           
+                }
+            }
         }
 
         public void Delete()
         {
-            
-                for (int i = Bricks.Count - 1; i >= 0; --i)
+
+            for (int i = Bricks.Count - 1; i >= 0; --i)
+            {
+                if (Bricks[i].isTouched)
                 {
-                    if (Bricks[i].isTouched)
+                    Bricks.RemoveAt(i);
+                    Points += 2;
+
+                    if (r > i)
                     {
-                        Bricks.RemoveAt(i);
-                        Points += 2;
+                        r--;
+                    }
+                    else if (r == i)
+                    {
 
-                        if (r > i)
+                        if (ShowImage)
                         {
-                            r--;
-                        }
-                        else if (r == i)
-                        {
-
-                            if (ShowImage)
-                            {
                             ShowImage = false;
                             ShowBonus = true;
 
-                            }
-
                         }
+
                     }
                 }
-                if(Bricks.Count == 0)
-                {
+            }
+            if (Bricks.Count == 0)
+            {
                 EndGame = true;
-                }
+            }
         }
         public void ClearBall()
         {

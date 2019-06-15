@@ -16,7 +16,7 @@ namespace BricksBallCrusher
         BonusGame BonusGame;
         Ball ball;
         Rectangle rectangle;
-        
+
         int leftX;
         int topY;
         int width;
@@ -25,7 +25,7 @@ namespace BricksBallCrusher
         Timer timer;
         Timer timer2;
         Game game;
-        Timer TimerImg;
+        // Timer TimerImg;
         bool image;
         public static int SetValueForPoints = 0;
 
@@ -33,7 +33,7 @@ namespace BricksBallCrusher
         {
             InitializeComponent();
             BonusGame = new BonusGame();
-          
+
 
             this.DoubleBuffered = true;
             leftX = 20;
@@ -50,45 +50,41 @@ namespace BricksBallCrusher
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-           
-
-            timer2 = new Timer();
-            timer2.Interval = 1;
-            timer2.Tick += new EventHandler(timer2_Tick);
 
 
-            TimerImg = new Timer();
-            TimerImg.Interval = 1500;
-            TimerImg.Tick += new EventHandler(timerImg_Tick);
-            TimerImg.Start();
-            BackgroundImage = Resources.BonusRound;
-       }
-
-        private void timerImg_Tick(object sender, EventArgs e)
-        {
+            //TimerImg = new Timer();
+            //TimerImg.Interval = 1500;
+            //TimerImg.Tick += new EventHandler(timerImg_Tick);
+            //TimerImg.Start();
+            //BackgroundImage = Resources.BonusRound;
             try
             {
-                image = false;
                 timer.Start();
-                timer2.Start();
-                Invalidate(true);
             }
             catch { }
+            //  timer2.Start();
         }
-        private void timer2_Tick(object sender, EventArgs e)
+
+        //private void timerImg_Tick(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        image = false;
+
+        //        Invalidate(true);
+        //    }
+        //    catch { }
+        //}
+
+        private void timer_Tick(object sender, EventArgs e)
         {
             TouchedBonus();
             BonusGame.Delete();
             BackToGame();
-            Invalidate(true);
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
             if (isMoved == 1)
             {
                 ball.Move(leftX, topY, width, height);
-               
+
                 rectangle.Rejected(ball);
             }
             Invalidate(true);
@@ -97,7 +93,7 @@ namespace BricksBallCrusher
 
         private void BonusLevel_Paint(object sender, PaintEventArgs e)
         {
-            if (!image)
+            if (image)
             {
                 e.Graphics.Clear(Color.Black);
                 Pen pen = new Pen(Color.White, 2);
@@ -115,18 +111,19 @@ namespace BricksBallCrusher
 
         public void BackToGame()
         {
+
             if (ball.isNewGame)
             {
                 SetValueForPoints = BonusGame.PointsBonus;
                 this.DialogResult = DialogResult.OK;
                 ball.isNewGame = false;
-                timer2.Stop();
+
                 timer.Stop();
-                TimerImg.Stop();
+                // TimerImg.Stop();
                 this.Close();
             }
         }
-       
+
 
         private void BonusLevel_KeyDown(object sender, KeyEventArgs e)
         {
@@ -147,6 +144,7 @@ namespace BricksBallCrusher
 
         public void TouchedBonus()
         {
+
             foreach (Brick b in BonusGame.bricks)
             {
                 b.SelectInBonus(ball);

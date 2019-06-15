@@ -20,8 +20,8 @@ namespace BricksBallCrusher
         public int B { get; set; }
 
         public Game game { get; set; }
-        
-        
+
+
         public BonusGame()
         {
             bricks = new List<Brick>();
@@ -38,7 +38,7 @@ namespace BricksBallCrusher
             int y = 60;
             while (flag < 7)
             {
-                
+
                 for (int i = 0; i < 11; i++)
                 {
                     Random r = new Random();
@@ -77,11 +77,11 @@ namespace BricksBallCrusher
                 {
                     bricks.RemoveAt(i);
                     PointsBonus++;
-                    
+
                 }
             }
-          
-            
+
+
         }
     }
 }
