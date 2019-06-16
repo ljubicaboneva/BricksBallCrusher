@@ -9,11 +9,11 @@ namespace BricksBallCrusher
 {
     public class Ball
     {
-        public Point Center{ get; set; }
+        public Point Center { get; set; }
         public Color Color { get; set; }
         public int Radius = 10;
         public bool isNewGame { get; set; }
-        
+
 
         public double Velocity { get; set; }
         public double Angle { get; set; }
@@ -82,11 +82,11 @@ namespace BricksBallCrusher
             }
 
             if (nextY >= btm)
-            {                
+            {
                 isNewGame = true;
             }
             Center = new Point(nextX, nextY);
         }
-        
+
     }
 }

@@ -23,7 +23,9 @@ namespace BricksBallCrusher
         Timer timer;
         int isMoved;
         int Misses;
-
+        Random randomSuprice;
+        int suprice;
+        int supriceCount;
         int flag = 0;
         Timer timer3;
         Ball ball_2;
@@ -32,6 +34,7 @@ namespace BricksBallCrusher
         bool isNewBall;
         int CountTwo = 1;
         int CountMore = 0;
+        int moreCounter;
         BonusGame bonusGame;
         int max = 0;
         public static int SetValueForFinalePoints = 0;
@@ -65,7 +68,7 @@ namespace BricksBallCrusher
             rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
             Misses = 3;
         }
-       
+
         private void timer_Tick(object sender, EventArgs e)
         {
             Touched();
@@ -272,14 +275,18 @@ namespace BricksBallCrusher
 
         private void lblMore_Click(object sender, EventArgs e)
         {
+            moreCounter++;
             isClickedMore = true;
             Path = 1;
-            for (int i = 1; i <= 10; i++)
+            if (moreCounter < 2)
             {
-                newball = new Ball(new Point(75 * i, this.Height - 120));
-                newball.Color = Color.YellowGreen;
-                newball.isMoreBall = true;
-                game.AddBallMore(newball);
+                for (int i = 1; i <= 10; i++)
+                {
+                    newball = new Ball(new Point(75 * i, this.Height - 120));
+                    newball.Color = Color.YellowGreen;
+                    newball.isMoreBall = true;
+                    game.AddBallMore(newball);
+                }
             }
             Path = 0;
             Invalidate(true);
@@ -308,9 +315,10 @@ namespace BricksBallCrusher
 
         public void EndGame()
         {
-          
+
             if (game.EndGame)
             {
+                timer.Stop();
                 DialogResult dialogResault = MessageBox.Show(string.Format("Your score is {0}", game.Points), "END GAME", MessageBoxButtons.OK);
                 Menu menu = new Menu();
                 FinalScore final = new FinalScore();
@@ -321,10 +329,49 @@ namespace BricksBallCrusher
                     max = SetValueForFinalePoints;
                 }
                 this.Hide();
-                timer.Stop();
                 menu.ShowDialog();
                 this.Close();
 
+            }
+
+        }
+
+        private void lblSuprice_Click(object sender, EventArgs e)
+        {
+            supriceCount++;
+            randomSuprice = new Random();
+            suprice = randomSuprice.Next(1, 6);
+            if (supriceCount <= 4) { 
+
+            if (suprice == 1)
+            {
+                timer.Interval = 20;
+                rectangle.Width = 120;
+                rectangle.Color = Color.Blue;
+            }
+            if (suprice == 2)
+            {
+                if (Misses > 1)
+                {
+                    timer.Interval = 20;
+                    Misses--;
+                }
+            }
+            if (suprice == 3)
+            {
+                timer.Interval = 20;
+                rectangle.Color = Color.Red;
+                rectangle.Width = 60;
+            }
+            if (suprice == 4)
+            {
+                timer.Interval = 100;
+            }
+            if (suprice == 5)
+            {
+
+                Misses++;
+            }
             }
         }
     }

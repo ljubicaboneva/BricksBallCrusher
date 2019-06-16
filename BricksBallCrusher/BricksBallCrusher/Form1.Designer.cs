@@ -36,6 +36,7 @@
             this.lblMore = new System.Windows.Forms.Label();
             this.lblTwo = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
+            this.lblSuprice = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -119,12 +120,24 @@
             this.lblMenu.Text = "MENU";
             this.lblMenu.Click += new System.EventHandler(this.lblMenu_Click);
             // 
+            // lblSuprice
+            // 
+            this.lblSuprice.AutoSize = true;
+            this.lblSuprice.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuprice.Location = new System.Drawing.Point(501, 15);
+            this.lblSuprice.Name = "lblSuprice";
+            this.lblSuprice.Size = new System.Drawing.Size(91, 27);
+            this.lblSuprice.TabIndex = 9;
+            this.lblSuprice.Text = "SUPRICE";
+            this.lblSuprice.Click += new System.EventHandler(this.lblSuprice_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(837, 487);
+            this.Controls.Add(this.lblSuprice);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.lblMore);
             this.Controls.Add(this.label3);
@@ -154,6 +167,6 @@
         private System.Windows.Forms.Label lblMore;
         private System.Windows.Forms.Label lblTwo;
         private System.Windows.Forms.Label lblMenu;
+        private System.Windows.Forms.Label lblSuprice;
     }
 }
-

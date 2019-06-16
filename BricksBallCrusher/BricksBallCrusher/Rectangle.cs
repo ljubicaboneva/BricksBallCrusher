@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BricksBallCrusher
 {
-     public class Rectangle
+    public class Rectangle
     {
-        public static int Width = 80;
+        public int Width = 80;
         public int Height = 10;
         public int X { get; set; }
         public int Y { get; set; }
@@ -21,7 +21,7 @@ namespace BricksBallCrusher
             Color = Color.White;
             X = x;
             Y = y;
-            
+
         }
 
         public void Draw(Graphics g)
@@ -30,30 +30,30 @@ namespace BricksBallCrusher
             g.FillRectangle(brush, X, Y, Width, Height);
             brush.Dispose();
         }
-       
 
-        public void Move(int left, int width,int x)
+
+        public void Move(int left, int width, int x)
         {
             X += x;
-            int nextX =X;
-            
+            int nextX = X;
+
             int lft = left;
             int rgt = left + width - Width;
 
             if (nextX <= lft)
-            {             
+            {
                 X -= x;
             }
             if (nextX >= rgt)
-            {               
+            {
                 X -= x;
             }
         }
 
 
         public void Rejected(Ball ball)
-        {           
-            if (ball.Center.X+ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
+        {
+            if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
             {
                 ball.velocityY = -ball.velocityY;
             }
