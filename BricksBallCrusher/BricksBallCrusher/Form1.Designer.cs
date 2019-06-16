@@ -32,11 +32,11 @@
             this.lblLives = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblMore = new System.Windows.Forms.Label();
             this.lblTwo = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.lblSuprice = new System.Windows.Forms.Label();
+            this.lblSuprise = new System.Windows.Forms.Label();
+            this.progrssBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // label1
@@ -77,16 +77,6 @@
             this.lblPoints.Size = new System.Drawing.Size(0, 32);
             this.lblPoints.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Curlz MT", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(612, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 27);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "HELP:";
-            // 
             // lblMore
             // 
             this.lblMore.AutoSize = true;
@@ -113,34 +103,43 @@
             // 
             this.lblMenu.AutoSize = true;
             this.lblMenu.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.Location = new System.Drawing.Point(394, 15);
+            this.lblMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.lblMenu.Location = new System.Drawing.Point(395, 15);
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(72, 27);
             this.lblMenu.TabIndex = 8;
             this.lblMenu.Text = "MENU";
             this.lblMenu.Click += new System.EventHandler(this.lblMenu_Click);
             // 
-            // lblSuprice
+            // lblSuprise
             // 
-            this.lblSuprice.AutoSize = true;
-            this.lblSuprice.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuprice.Location = new System.Drawing.Point(501, 15);
-            this.lblSuprice.Name = "lblSuprice";
-            this.lblSuprice.Size = new System.Drawing.Size(91, 27);
-            this.lblSuprice.TabIndex = 9;
-            this.lblSuprice.Text = "SUPRICE";
-            this.lblSuprice.Click += new System.EventHandler(this.lblSuprice_Click);
+            this.lblSuprise.AutoSize = true;
+            this.lblSuprise.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSuprise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblSuprise.Location = new System.Drawing.Point(580, 15);
+            this.lblSuprise.Name = "lblSuprise";
+            this.lblSuprise.Size = new System.Drawing.Size(91, 27);
+            this.lblSuprise.TabIndex = 9;
+            this.lblSuprise.Text = "SUPRISE";
+            this.lblSuprise.Click += new System.EventHandler(this.lblSuprise_Click);
+            // 
+            // progrssBar
+            // 
+            this.progrssBar.Location = new System.Drawing.Point(254, 465);
+            this.progrssBar.Name = "progrssBar";
+            this.progrssBar.Size = new System.Drawing.Size(326, 10);
+            this.progrssBar.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(837, 487);
-            this.Controls.Add(this.lblSuprice);
+            this.Controls.Add(this.progrssBar);
+            this.Controls.Add(this.lblSuprise);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.lblMore);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblTwo);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.label2);
@@ -163,10 +162,11 @@
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPoints;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblMore;
         private System.Windows.Forms.Label lblTwo;
         private System.Windows.Forms.Label lblMenu;
-        private System.Windows.Forms.Label lblSuprice;
+        private System.Windows.Forms.Label lblSuprise;
+        private System.Windows.Forms.ProgressBar progrssBar;
+        private System.Windows.Forms.Timer timer1;
     }
 }
