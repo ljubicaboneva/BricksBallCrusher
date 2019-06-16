@@ -92,9 +92,9 @@
             this.lblMore.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMore.Location = new System.Drawing.Point(740, 15);
             this.lblMore.Name = "lblMore";
-            this.lblMore.Size = new System.Drawing.Size(91, 27);
+            this.lblMore.Size = new System.Drawing.Size(70, 27);
             this.lblMore.TabIndex = 7;
-            this.lblMore.Text = "SUPRICE";
+            this.lblMore.Text = "MORE";
             this.lblMore.Click += new System.EventHandler(this.lblMore_Click);
             // 
             // lblTwo

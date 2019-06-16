@@ -9,7 +9,7 @@ namespace BricksBallCrusher
 {
      public class Rectangle
     {
-        public int Width = 80;
+        public static int Width = 80;
         public int Height = 10;
         public int X { get; set; }
         public int Y { get; set; }

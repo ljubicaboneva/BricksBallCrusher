@@ -20,26 +20,32 @@ namespace BricksBallCrusher
 
         public float velocityX;
         public float velocityY;
-       
+        public bool isMoreBall { get; set; }
 
         public Ball(Point p)
         {
             Center = p;
             Color = Color.White;
             Velocity = 10;
-            Random r = new Random();            
-            Angle = r.NextDouble() * 2 * Math.PI;
-
-            while (Angle <= 0.15*2*Math.PI && Angle >= 0.3*2*Math.PI)
+            Random r = new Random();
+            isMoreBall = false;
+            if (Form1.Path == 1)
+            {
+                velocityX = 0;
+                velocityY = -10;
+            }
+            else
             {
                 Angle = r.NextDouble() * 2 * Math.PI;
+                while (Angle <= 0.15 * 2 * Math.PI && Angle >= 0.3 * 2 * Math.PI)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                }
+                velocityX = (float)(Math.Cos(Angle) * Velocity);
+                velocityY = (float)(Math.Sin(Angle) * Velocity);
             }
-          
-            velocityX = (float)(Math.Cos(Angle) * Velocity);
-            velocityY = (float)(Math.Sin(Angle) * Velocity);
-
             isNewGame = false;
-            
+
         }
 
         public void Draw(Graphics g)

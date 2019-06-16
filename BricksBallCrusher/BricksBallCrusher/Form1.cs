@@ -23,6 +23,7 @@ namespace BricksBallCrusher
         Timer timer;
         int isMoved;
         int Misses;
+
         int flag = 0;
         Timer timer3;
         Ball ball_2;
@@ -34,31 +35,25 @@ namespace BricksBallCrusher
         BonusGame bonusGame;
         int max = 0;
         public static int SetValueForFinalePoints = 0;
-        Random randomSuprice;
-        int suprice;
+        public static bool isClickedMore;
+        public static int Path = 0;
 
 
         public Form1()
         {
 
-            InitializeComponent();           
+            InitializeComponent();
             this.DoubleBuffered = true;
             game = new Game();
             bonusGame = new BonusGame();
             isBall2 = false;
             isNewBall = false;
+            isClickedMore = false;
 
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
-
-
-
-            //timer3 = new Timer();
-            //timer3.Interval = 25;
-            //timer3.Tick += new EventHandler(timer3_Tick);
-            //timer3.Start();
 
 
             leftX = 20;
@@ -70,20 +65,13 @@ namespace BricksBallCrusher
             rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
             Misses = 3;
         }
-        //private void timer3_Tick(object sender, EventArgs e)
-        //{
-        //    CountMore = 0;
-        //    Invalidate(true);
-        //}
-
-
-
+       
         private void timer_Tick(object sender, EventArgs e)
         {
-            EndGame();
             Touched();
             game.Delete();
-            Bonus();            
+            Bonus();
+            EndGame();
             if (isMoved == 1)
             {
                 ball.Move(leftX, topY, width, height);
@@ -100,6 +88,18 @@ namespace BricksBallCrusher
                 NewGame();
                 rectangle.Rejected(ball);
 
+            }
+
+            if (isClickedMore)
+            {
+                foreach (Ball b in game.BallsMore)
+                {
+                    b.Move(leftX, topY, width, height);
+                }
+            }
+            if (game.BallsMore.Count == 0)
+            {
+                isClickedMore = false;
             }
             Invalidate(true);
         }
@@ -175,7 +175,7 @@ namespace BricksBallCrusher
                     }
                     else
                     {
-                        
+
                         Menu menu = new Menu();
                         FinalScore final = new FinalScore();
 
@@ -190,19 +190,20 @@ namespace BricksBallCrusher
                     }
 
                 }
-               
-                    if (isBall2)
+
+                if (isBall2)
                 {
                     game.Balls.Remove(ball_2);
                     isBall2 = false;
                 }
 
-            }            
+            }
             lblLives.Text = Misses.ToString();
             lblPoints.Text = game.Points.ToString();
+
         }
 
-        
+
 
         public void Touched()
         {
@@ -213,6 +214,11 @@ namespace BricksBallCrusher
                 b.Select(ball);
                 if (isBall2)
                     b.Select(ball_2);
+                foreach (Ball b1 in game.BallsMore)
+                {
+                    b.Select(b1);
+                }
+
             }
         }
 
@@ -261,24 +267,23 @@ namespace BricksBallCrusher
                 CountTwo--;
             }
 
-            Invalidate();
+            Invalidate(true);
         }
 
-        //private void lblMore_Click(object sender, EventArgs e)
-        //{
-        //    while (CountMore == 5)
-        //    {
-        //        newball = new Ball(new Point(this.Width / 2, this.Height - 120));
-        //        newball.Color = Color.YellowGreen;
-        //        newball.Angle = ball.Angle;
-        //        isNewBall = true;
-        //        game.AddBall(newball);
-        //        CountMore++;
-
-        //    }
-        //    Misses--;
-        //    Invalidate();
-        //}
+        private void lblMore_Click(object sender, EventArgs e)
+        {
+            isClickedMore = true;
+            Path = 1;
+            for (int i = 1; i <= 10; i++)
+            {
+                newball = new Ball(new Point(75 * i, this.Height - 120));
+                newball.Color = Color.YellowGreen;
+                newball.isMoreBall = true;
+                game.AddBallMore(newball);
+            }
+            Path = 0;
+            Invalidate(true);
+        }
 
         private void lblMenu_Click(object sender, EventArgs e)
         {
@@ -298,14 +303,14 @@ namespace BricksBallCrusher
                 menu.ShowDialog();
                 this.Close();
             }
+            Invalidate();
         }
 
         public void EndGame()
         {
-            
+          
             if (game.EndGame)
             {
-                timer.Stop();
                 DialogResult dialogResault = MessageBox.Show(string.Format("Your score is {0}", game.Points), "END GAME", MessageBoxButtons.OK);
                 Menu menu = new Menu();
                 FinalScore final = new FinalScore();
@@ -316,48 +321,11 @@ namespace BricksBallCrusher
                     max = SetValueForFinalePoints;
                 }
                 this.Hide();
+                timer.Stop();
                 menu.ShowDialog();
                 this.Close();
 
             }
-
         }
-
-       private void lblMore_Click(object sender, EventArgs e)
-        {
-            randomSuprice = new Random();
-            suprice = randomSuprice.Next(1,6);
-            
-            if (suprice == 1)
-            {
-                timer.Interval = 20;
-                rectangle.Width = 120;
-                rectangle.Color = Color.Blue;
-            }
-            if(suprice==2)
-            {
-                if (Misses > 1)
-                {
-                    timer.Interval = 20;
-                    Misses--;
-                }
-            }
-            if (suprice == 3)
-            {
-                timer.Interval = 20;
-                rectangle.Color = Color.Red;
-                rectangle.Width = 60;               
-            }
-            if (suprice == 4)
-            {
-                timer.Interval = 100;
-            }
-            if (suprice == 5) {
-
-                Misses++;
-            }
-        }
-
-
     }
 }

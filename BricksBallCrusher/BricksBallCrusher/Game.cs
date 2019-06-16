@@ -11,13 +11,15 @@ namespace BricksBallCrusher
     {
         public List<Brick> Bricks { get; set; }
         public List<Ball> Balls { get; set; }
+        public List<Ball> BallsMore { get; set; }
         public BonusGame bonusGame { get; set; }
         public Color CurrentColor { get; set; }
         public int Points { get; set; }
-
+        
         public int flag;
         public int r { get; set; }
         public Random random { get; set; }
+
         public bool ShowImage { get; set; }
         public bool ShowBonus { get; set; }
         public bool EndGame { get; set; }
@@ -28,19 +30,24 @@ namespace BricksBallCrusher
             CurrentColor = Color.Red;
             Bricks = new List<Brick>();
             Balls = new List<Ball>();
+            BallsMore = new List<Ball>();
             bonusGame = new BonusGame();
             flag = 0;
             EndGame = false;
             ShowBonus = false;
             random = new Random();
             r = random.Next(0, 54);
-            Points = 0;          
+            Points = 0;
             ShowImage = true;
         }
 
         public void AddBall(Ball ball)
         {
             Balls.Add(ball);
+        }
+        public void AddBallMore(Ball ball)
+        {
+            BallsMore.Add(ball);
         }
 
         public void Add()
@@ -69,7 +76,7 @@ namespace BricksBallCrusher
                 {
                     CurrentColor = Color.Green;
                 }
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i <10; i++)
                 {
                     Brick brick = new Brick(x, y);
                     brick.Color = CurrentColor;
@@ -89,10 +96,14 @@ namespace BricksBallCrusher
             {
                 b.Draw(g);
             }
+            foreach (Ball b in BallsMore)
+            {
+                b.Draw(g);
+            }
         }
         public void Move(int left, int top, int width, int height)
         {
-            foreach (Ball b in Balls)
+            foreach(Ball b in Balls)
             {
                 b.Move(left, top, width, height);
             }
@@ -100,7 +111,7 @@ namespace BricksBallCrusher
 
         public void Draw(Graphics g)
         {
-            for (int i = Bricks.Count - 1; i >= 0; --i)
+            for(int i=Bricks.Count-1;i>=0;--i)
             {
                 if (i == r)
                 {
@@ -108,49 +119,49 @@ namespace BricksBallCrusher
                     {
                         Bricks[i].DrawImage(g);
                     }
-                    else if (!ShowImage)
+                    else if(!ShowImage)
                     {
                         Bricks[i].Draw(g);
-                    }
+                    }                   
                 }
                 else
                 {
                     Bricks[i].Draw(g);
-                }
-            }
+                }               
+            }           
         }
 
         public void Delete()
         {
-
-            for (int i = Bricks.Count - 1; i >= 0; --i)
-            {
-                if (Bricks[i].isTouched)
+            
+                for (int i = Bricks.Count - 1; i >= 0; --i)
                 {
-                    Bricks.RemoveAt(i);
-                    Points += 2;
-
-                    if (r > i)
+                    if (Bricks[i].isTouched)
                     {
-                        r--;
-                    }
-                    else if (r == i)
-                    {
+                        Bricks.RemoveAt(i);
+                        Points += 2;
 
-                        if (ShowImage)
+                        if (r > i)
                         {
+                            r--;
+                        }
+                        else if (r == i)
+                        {
+
+                            if (ShowImage)
+                            {
                             ShowImage = false;
                             ShowBonus = true;
 
-                        }
+                            }
 
+                        }
                     }
                 }
-            }
-            if (Bricks.Count == 0)
-            {
+                if(Bricks.Count == 0)
+                {
                 EndGame = true;
-            }
+                }
         }
         public void ClearBall()
         {
@@ -160,6 +171,16 @@ namespace BricksBallCrusher
                 if (Balls[i].isNewGame)
                 {
                     Balls.RemoveAt(i);
+                }
+
+            }
+            for (int i = BallsMore.Count - 1; i >= 0; --i)
+            {
+
+                if (BallsMore[i].isNewGame)
+                {
+                    BallsMore.RemoveAt(i);
+
                 }
 
             }

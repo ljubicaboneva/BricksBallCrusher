@@ -22,9 +22,9 @@ namespace BricksBallCrusher
         int width;
         int height;
         int isMoved;
-        Timer timer;      
+        Timer timer;
         Game game;
-         Timer TimerImg;
+        Timer TimerImg;
         bool image;
         public static int SetValueForPoints = 0;
 
@@ -63,7 +63,7 @@ namespace BricksBallCrusher
             {
                 timer.Start();
             }
-            catch { }          
+            catch { }
         }
 
         //private void timerImg_Tick(object sender, EventArgs e)
@@ -115,10 +115,10 @@ namespace BricksBallCrusher
             if (ball.isNewGame)
             {
                 timer.Stop();
-               // TimerImg.Stop();
+                // TimerImg.Stop();
                 SetValueForPoints = BonusGame.PointsBonus;
                 this.DialogResult = DialogResult.OK;
-                ball.isNewGame = false;                
+                ball.isNewGame = false;
                 this.Close();
             }
         }

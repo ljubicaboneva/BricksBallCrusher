@@ -18,17 +18,17 @@ namespace BricksBallCrusher
         public BonusGame bonus { get; set; }
         public bool isTouched { get; set; }
         public Image extra;
-        
 
-        public Brick(int x,int y)
+
+        public Brick(int x, int y)
         {
             Color = Color.White;
             X = x;
             Y = y;
-            isTouched=false;
+            isTouched = false;
             extra = Resources.star1;
             bonus = new BonusGame();
-           
+
         }
 
         public void Draw(Graphics g)
@@ -42,23 +42,23 @@ namespace BricksBallCrusher
         {
 
             g.DrawImageUnscaled(extra, X, Y, Width, Height);
-            
+
         }
 
         public void Select(Ball ball)
         {
 
-            if (ball.Center.X +ball.Radius >= X && ball.Center.X -ball.Radius <= X + Width && ball.Center.Y +ball.Radius>= Y && ball.Center.Y-ball.Radius <= Y + Height)
+            if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
             {
-                
-                    ball.velocityY = -ball.velocityY;
-                    isTouched = !isTouched;
-         }
 
-            if(ball.Center.X + ball.Radius <= X && ball.Center.X - ball.Radius >= X + Width && ball.Center.Y + ball.Radius <= Y && ball.Center.Y - ball.Radius >= Y + Height)
+                ball.velocityY = -ball.velocityY;
+                isTouched = !isTouched;
+            }
+
+            if (ball.Center.X + ball.Radius <= X && ball.Center.X - ball.Radius >= X + Width && ball.Center.Y + ball.Radius <= Y && ball.Center.Y - ball.Radius >= Y + Height)
             {
-                
-                    ball.velocityY = -ball.velocityY;
+
+                ball.velocityY = -ball.velocityY;
             }
 
         }
