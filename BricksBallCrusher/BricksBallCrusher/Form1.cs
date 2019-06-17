@@ -40,6 +40,10 @@ namespace BricksBallCrusher
         public static int SetValueForFinalePoints = 0;
         public static bool isClickedMore;
         public static int Path = 0;
+        int BallX;
+        int BallY;
+        int RectangleX;
+        int RectangleY;
 
 
         public Form1()
@@ -69,9 +73,15 @@ namespace BricksBallCrusher
             width = this.Width - (3 * leftX);
             height = this.Height - (int)(2.5 * topY);
 
-            ball = new Ball(new Point(this.Width / 2, this.Height - 120));
-            rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
+            BallX = this.Width / 2;
+            BallY = this.Height - 120;
+            RectangleX = this.Width / 2 - 40;
+            RectangleY = this.Height - 110;
+            ball = new Ball(new Point(BallX, BallY));
+            rectangle = new Rectangle(RectangleX, RectangleY);
             Misses = 3;
+
+            
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -126,8 +136,6 @@ namespace BricksBallCrusher
             rectangle.Draw(e.Graphics);
             game.Add();
             game.Draw(e.Graphics);
-
-
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -158,8 +166,8 @@ namespace BricksBallCrusher
                 game.ClearBall();
                 if (Misses > 1)
                 {
-                    ball = new Ball(new Point(this.Width / 2, this.Height - 120));
-                    rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
+                    ball = new Ball(new Point(BallX,BallY));
+                    rectangle = new Rectangle(RectangleX,RectangleY);
                     isMoved = 0;
                     Misses--;
                 }
@@ -172,8 +180,8 @@ namespace BricksBallCrusher
                     {
 
                         game.ClearBall();
-                        ball = new Ball(new Point(this.Width / 2, this.Height - 120));
-                        rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
+                        ball = new Ball(new Point(BallX, BallY));
+                        rectangle = new Rectangle(RectangleX, RectangleY);
                         game.Add();
                         timer.Start();
                         Misses = 3;
@@ -219,8 +227,6 @@ namespace BricksBallCrusher
             lblPoints.Text = game.Points.ToString();
 
         }
-
-
 
         public void Touched()
         {
@@ -359,7 +365,7 @@ namespace BricksBallCrusher
 
             if (suprise == 1)
             {
-                    timer2.Start();
+                   timer2.Start();
                     timer.Interval = 20;
                 rectangle.Width = 120;
                 rectangle.Color = Color.Blue;
@@ -380,7 +386,7 @@ namespace BricksBallCrusher
                 rectangle.Width = 60;
             }
             if (suprise == 4)
-            {
+                {
                     timer2.Start();
                     timer.Interval = 80;
             }

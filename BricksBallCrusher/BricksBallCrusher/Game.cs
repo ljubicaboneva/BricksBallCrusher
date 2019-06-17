@@ -58,23 +58,23 @@ namespace BricksBallCrusher
             {
                 if (flag == 0)
                 {
-                    CurrentColor = Color.Blue;
+                    CurrentColor = Color.Aqua;
                 }
                 else if (flag == 1)
                 {
-                    CurrentColor = Color.Aqua;
+                    CurrentColor = Color.LightSteelBlue;
                 }
                 else if (flag == 2)
                 {
-                    CurrentColor = Color.Red;
+                    CurrentColor = Color.LightPink;
                 }
                 else if (flag == 3)
                 {
-                    CurrentColor = Color.Yellow;
+                    CurrentColor = Color.LightGoldenrodYellow;
                 }
                 else if (flag == 4)
                 {
-                    CurrentColor = Color.Green;
+                    CurrentColor = Color.LightGreen;
                 }
                 for (int i = 0; i < 10; i++)
                 {
