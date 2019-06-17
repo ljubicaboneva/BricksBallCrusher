@@ -59,7 +59,7 @@ namespace BricksBallCrusher
             isClickedSurprise = true;
 
             timer = new Timer();
-            timer.Interval = 20;
+            timer.Interval = 30;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
@@ -173,7 +173,14 @@ namespace BricksBallCrusher
                     timer2.Stop();
                     progrssBar.Value = 0;
                     timer.Start();
-                    timer.Interval = 20;
+                    timer.Interval = 30;
+                    if (supriseCount <= 4)
+                    {
+                        lblSuprise.ForeColor = Color.Red;
+                        isClickedSurprise = true;
+                    }
+                    
+                    
                 }
                 else if (Misses == 1)
                 {
@@ -183,7 +190,7 @@ namespace BricksBallCrusher
                     if (dialogResault == DialogResult.Retry)
                     {
                         timer = new Timer();
-                        timer.Interval = 20;
+                        timer.Interval = 30;
                         timer.Tick += new EventHandler(timer_Tick);
                         timer.Start();
                         
@@ -206,6 +213,7 @@ namespace BricksBallCrusher
                         suprise = 0;
                         supriseCount = 0;
                         lblSuprise.ForeColor = Color.Red;
+                        isClickedSurprise = true;
                     }
                     else
                     {
@@ -378,7 +386,7 @@ namespace BricksBallCrusher
                         
                         lblSuprise.ForeColor = Color.Black;
                         timer2.Start();
-                        timer.Interval = 20;
+                        timer.Interval = 30;
                         rectangle.Width = 120;
                         rectangle.Color = Color.Blue;
                         isClickedSurprise = false;
@@ -387,8 +395,8 @@ namespace BricksBallCrusher
                     {
                         if (Misses > 1)
                         {
-                            
-                            timer.Interval = 20;
+
+                            timer.Interval = 30;
                             Misses--;
                         }
                     }
@@ -397,14 +405,14 @@ namespace BricksBallCrusher
                         
                         lblSuprise.ForeColor = Color.Black;
                         timer2.Start();
-                        timer.Interval = 20;
+                        timer.Interval = 30;
                         rectangle.Color = Color.Red;
                         rectangle.Width = 60;
                         isClickedSurprise = false;
                     }
                     if (suprise == 4)
                     {
-                       
+
                         lblSuprise.ForeColor = Color.Black;
                         timer2.Start();
                         timer.Interval = 80;
@@ -446,7 +454,7 @@ namespace BricksBallCrusher
                 {
                    
                     timer2.Stop();
-                    timer.Interval = 20;
+                    timer.Interval = 30;
                     rectangle.Width = 80;
                     rectangle.Color = Color.White;
                     progrssBar.Value = 0;
@@ -455,7 +463,7 @@ namespace BricksBallCrusher
                 if (suprise == 3)
                 {
                     timer2.Stop();
-                    timer.Interval = 20;
+                    timer.Interval = 30;
                     rectangle.Color = Color.White;
                     rectangle.Width = 80;
                     progrssBar.Value = 0;
@@ -463,7 +471,7 @@ namespace BricksBallCrusher
                 if (suprise == 4)
                 {
                     timer2.Stop();
-                    timer.Interval = 20;
+                    timer.Interval = 30;
                     progrssBar.Value = 0;
                 }
                

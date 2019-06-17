@@ -37,7 +37,7 @@ namespace BricksBallCrusher
             else
             {
                 Angle = r.NextDouble() * 2 * Math.PI;
-                while (Angle >= 0.49 * 2 * Math.PI && Angle <= 0.52 * 2 * Math.PI  && Angle >= 0.01 * 2 * Math.PI && Angle <= 0.05 * 2 * Math.PI && Angle >= 0.24 * 2 * Math.PI && Angle <= 0.26 * 2 * Math.PI || Angle >= Math.PI)
+                while (Angle >= 0.4 * 2 * Math.PI && Angle <= 0.52 * 2 * Math.PI  && Angle >= 0.01 * 2 * Math.PI && Angle <= 0.09 * 2 * Math.PI && Angle >= 0.24 * 2 * Math.PI && Angle <= 0.26 * 2 * Math.PI || Angle >= Math.PI)
                 {
                     Angle = r.NextDouble() * 2 * Math.PI;
                 }
