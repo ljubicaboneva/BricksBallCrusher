@@ -35,7 +35,6 @@ C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBal
 C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.exe
 C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.pdb
-C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csprojAssemblyReference.cache
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.exe.config
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.exe
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\bin\Debug\BricksBallCrusher.pdb
@@ -49,3 +48,4 @@ C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.cspr
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csproj.CoreCompileInputs.cache
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.exe
 C:\Users\Pc\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.pdb
+C:\Users\user\Desktop\Lj\BricksBallCrusher\BricksBallCrusher\obj\Debug\BricksBallCrusher.csprojAssemblyReference.cache

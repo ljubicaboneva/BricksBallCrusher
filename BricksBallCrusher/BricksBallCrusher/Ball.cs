@@ -37,10 +37,11 @@ namespace BricksBallCrusher
             else
             {
                 Angle = r.NextDouble() * 2 * Math.PI;
-                if (Angle == 0.49 * 2 * Math.PI || Angle == 0.99 * 2 * Math.PI || Angle == 0.01 * 2 * Math.PI || Angle == 0.51 * 2 * Math.PI || Angle == 0.25 * 2 * Math.PI || Angle == 0.75 * 2 * Math.PI)
+                while (Angle >= 0.49 * 2 * Math.PI && Angle <= 0.52 * 2 * Math.PI  && Angle >= 0.01 * 2 * Math.PI && Angle <= 0.05 * 2 * Math.PI && Angle >= 0.24 * 2 * Math.PI && Angle <= 0.26 * 2 * Math.PI || Angle >= Math.PI)
                 {
                     Angle = r.NextDouble() * 2 * Math.PI;
                 }
+               
                 velocityX = (float)(Math.Cos(Angle) * Velocity);
                 velocityY = (float)(Math.Sin(Angle) * Velocity);
             }

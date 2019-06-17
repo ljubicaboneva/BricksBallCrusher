@@ -33,12 +33,12 @@ namespace BricksBallCrusher
         bool isBall2;
         bool isNewBall;
         int CountTwo = 1;
-        int CountMore = 0;
         int moreCounter;
         BonusGame bonusGame;
         int max = 0;
         public static int SetValueForFinalePoints = 0;
         public static bool isClickedMore;
+        public bool isClickedSurprise;
         public static int Path = 0;
         int BallX;
         int BallY;
@@ -56,6 +56,7 @@ namespace BricksBallCrusher
             isBall2 = false;
             isNewBall = false;
             isClickedMore = false;
+            isClickedSurprise = true;
 
             timer = new Timer();
             timer.Interval = 20;
@@ -79,7 +80,7 @@ namespace BricksBallCrusher
             RectangleY = this.Height - 110;
             ball = new Ball(new Point(BallX, BallY));
             rectangle = new Rectangle(RectangleX, RectangleY);
-            Misses = 3;
+             Misses = 3;
 
             
         }
@@ -128,7 +129,7 @@ namespace BricksBallCrusher
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.Clear(Color.FromArgb(128,128,255));
-            Pen pen = new Pen(Color.White, 2);
+            Pen pen = new Pen(Color.Black, 2);
             e.Graphics.DrawRectangle(pen, leftX, topY, width, height);
             pen.Dispose();
             game.AddBall(ball);
@@ -158,11 +159,9 @@ namespace BricksBallCrusher
 
         public void NewGame()
         {
-            timer.Stop();
-            timer.Start();
+            
             if (ball.isNewGame)
             {
-                timer.Start();
                 game.ClearBall();
                 if (Misses > 1)
                 {
@@ -170,6 +169,11 @@ namespace BricksBallCrusher
                     rectangle = new Rectangle(RectangleX,RectangleY);
                     isMoved = 0;
                     Misses--;
+
+                    timer2.Stop();
+                    progrssBar.Value = 0;
+                    timer.Start();
+                    timer.Interval = 20;
                 }
                 else if (Misses == 1)
                 {
@@ -178,40 +182,48 @@ namespace BricksBallCrusher
 
                     if (dialogResault == DialogResult.Retry)
                     {
-
+                        timer = new Timer();
+                        timer.Interval = 20;
+                        timer.Tick += new EventHandler(timer_Tick);
+                        timer.Start();
+                        
                         game.ClearBall();
                         ball = new Ball(new Point(BallX, BallY));
                         rectangle = new Rectangle(RectangleX, RectangleY);
-                        game.Add();
-                        timer.Start();
+                        game = new Game();
+                        bonusGame = new BonusGame();
+                        isBall2 = false;
+                        isNewBall = false;
+                        isClickedMore = false;
+                        
                         Misses = 3;
                         isMoved = 0;
-                        ball.isNewGame = false;
-                        game.flag = 0;
-                        game.random = new Random();
-                        game.ShowImage = true;
-                        game.Points = 0;
                         CountTwo = 1;
-                        CountMore = 0;
+                        timer2.Stop();
+                        progrssBar.Value = 0;
+                       
                         SetValueForFinalePoints = 0;
                         suprise = 0;
                         supriseCount = 0;
-
+                        lblSuprise.ForeColor = Color.Red;
                     }
                     else
                     {
-
-                        Menu menu = new Menu();
-                        FinalScore final = new FinalScore();
-
-                        if (game.Points >= max)
+                        try
                         {
-                            SetValueForFinalePoints = game.Points;
-                            max = SetValueForFinalePoints;
+                            Menu menu = new Menu();
+                            FinalScore final = new FinalScore();
+
+                            if (game.Points >= max)
+                            {
+                                SetValueForFinalePoints = game.Points;
+                                max = SetValueForFinalePoints;
+                            }
+                            this.Hide();
+                            menu.ShowDialog();
+                            this.Close();
                         }
-                        this.Hide();
-                        menu.ShowDialog();
-                        this.Close();
+                        catch { }
                     }
 
                 }
@@ -230,8 +242,6 @@ namespace BricksBallCrusher
 
         public void Touched()
         {
-            timer.Stop();
-            timer.Start();
             foreach (Brick b in game.Bricks)
             {
                 b.Select(ball);
@@ -251,8 +261,7 @@ namespace BricksBallCrusher
         }
         private void Bonus()
         {
-            timer.Stop();
-            timer.Start();
+           
             BonusLevel bonus = new BonusLevel();
             if (game.ShowBonus)
             {
@@ -284,7 +293,7 @@ namespace BricksBallCrusher
             if (CountTwo == 1 && isMoved == 0)
             {
                 ball_2 = new Ball(new Point(this.Width / 2, this.Height - 120));
-                ball_2.Color = Color.YellowGreen;
+                ball_2.Color = Color.Black;
                 game.AddBall(ball_2);
                 isBall2 = true;
                 CountTwo--;
@@ -303,7 +312,7 @@ namespace BricksBallCrusher
                 for (int i = 1; i <= 10; i++)
                 {
                     newball = new Ball(new Point(75 * i, this.Height - 120));
-                    newball.Color = Color.YellowGreen;
+                    newball.Color = Color.Red;
                     newball.isMoreBall = true;
                     game.AddBallMore(newball);
                 }
@@ -330,7 +339,7 @@ namespace BricksBallCrusher
                 menu.ShowDialog();
                 this.Close();
             }
-            Invalidate();
+            Invalidate(true);
         }
 
         public void EndGame()
@@ -361,39 +370,58 @@ namespace BricksBallCrusher
             supriseCount++;
             randomSuprise = new Random();
             suprise = randomSuprise.Next(1, 6);
-            if (supriseCount <= 4) { 
+            if (isClickedSurprise) {
+                if (supriseCount <= 4)
+                {
+                    if (suprise == 1)
+                    {
+                        
+                        lblSuprise.ForeColor = Color.Black;
+                        timer2.Start();
+                        timer.Interval = 20;
+                        rectangle.Width = 120;
+                        rectangle.Color = Color.Blue;
+                        isClickedSurprise = false;
+                    }
+                    if (suprise == 2)
+                    {
+                        if (Misses > 1)
+                        {
+                            
+                            timer.Interval = 20;
+                            Misses--;
+                        }
+                    }
+                    if (suprise == 3)
+                    {
+                        
+                        lblSuprise.ForeColor = Color.Black;
+                        timer2.Start();
+                        timer.Interval = 20;
+                        rectangle.Color = Color.Red;
+                        rectangle.Width = 60;
+                        isClickedSurprise = false;
+                    }
+                    if (suprise == 4)
+                    {
+                       
+                        lblSuprise.ForeColor = Color.Black;
+                        timer2.Start();
+                        timer.Interval = 80;
+                        isClickedSurprise = false;
+                    }
+                    if (suprise == 5)
+                    {
+                        Misses++;
+                    }
 
-            if (suprise == 1)
-            {
-                   timer2.Start();
-                    timer.Interval = 20;
-                rectangle.Width = 120;
-                rectangle.Color = Color.Blue;
-            }
-            if (suprise == 2)
-            {
-                if (Misses > 1)
-                {
-                    timer.Interval = 20;
-                    Misses--;
+                   
                 }
-            }
-            if (suprise == 3)
-            {
-                    timer2.Start();
-                    timer.Interval = 20;
-                rectangle.Color = Color.Red;
-                rectangle.Width = 60;
-            }
-            if (suprise == 4)
+                else
                 {
-                    timer2.Start();
-                    timer.Interval = 80;
-            }
-            if (suprise == 5)
-            {
-                    Misses++;
-            }
+                    lblSuprise.ForeColor = Color.Black;
+                }
+            
         }
            
         }
@@ -412,8 +440,11 @@ namespace BricksBallCrusher
             }
             if (progrssBar.Value == progrssBar.Maximum)
             {
+                isClickedSurprise = true;
+                lblSuprise.ForeColor = Color.Red;
                 if (suprise == 1)
                 {
+                   
                     timer2.Stop();
                     timer.Interval = 20;
                     rectangle.Width = 80;

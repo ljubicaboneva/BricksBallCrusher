@@ -81,6 +81,7 @@
             // 
             this.lblMore.AutoSize = true;
             this.lblMore.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblMore.Location = new System.Drawing.Point(740, 15);
             this.lblMore.Name = "lblMore";
             this.lblMore.Size = new System.Drawing.Size(70, 27);
@@ -92,6 +93,7 @@
             // 
             this.lblTwo.AutoSize = true;
             this.lblTwo.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTwo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lblTwo.Location = new System.Drawing.Point(677, 15);
             this.lblTwo.Name = "lblTwo";
             this.lblTwo.Size = new System.Drawing.Size(57, 27);
@@ -103,8 +105,8 @@
             // 
             this.lblMenu.AutoSize = true;
             this.lblMenu.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lblMenu.Location = new System.Drawing.Point(395, 15);
+            this.lblMenu.ForeColor = System.Drawing.Color.Aqua;
+            this.lblMenu.Location = new System.Drawing.Point(369, 15);
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(72, 27);
             this.lblMenu.TabIndex = 8;
@@ -116,7 +118,7 @@
             this.lblSuprise.AutoSize = true;
             this.lblSuprise.Font = new System.Drawing.Font("Curlz MT", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuprise.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblSuprise.Location = new System.Drawing.Point(580, 15);
+            this.lblSuprise.Location = new System.Drawing.Point(447, 15);
             this.lblSuprise.Name = "lblSuprise";
             this.lblSuprise.Size = new System.Drawing.Size(91, 27);
             this.lblSuprise.TabIndex = 9;
@@ -125,7 +127,7 @@
             // 
             // progrssBar
             // 
-            this.progrssBar.Location = new System.Drawing.Point(254, 465);
+            this.progrssBar.Location = new System.Drawing.Point(268, 465);
             this.progrssBar.Name = "progrssBar";
             this.progrssBar.Size = new System.Drawing.Size(326, 10);
             this.progrssBar.TabIndex = 10;

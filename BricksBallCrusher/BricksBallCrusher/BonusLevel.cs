@@ -24,8 +24,6 @@ namespace BricksBallCrusher
         int isMoved;
         Timer timer;
         Game game;
-        Timer TimerImg;
-        bool image;
         public static int SetValueForPoints = 0;
 
         public BonusLevel()
@@ -39,26 +37,15 @@ namespace BricksBallCrusher
             topY = 40;
             width = this.Width - (3 * leftX);
             height = this.Height - (int)(2.5 * topY);
-            image = true;
+            
 
             ball = new Ball(new Point(this.Width / 2, this.Height - 120));
             rectangle = new Rectangle(this.Width / 2 - 40, this.Height - 110);
             game = new Game();
-
             isMoved = 0;
             timer = new Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-
-
-            //TimerImg = new Timer();
-            //TimerImg.Interval = 1500;
-            //TimerImg.Tick += new EventHandler(timerImg_Tick);
-            //try { 
-            //TimerImg.Start();
-            //}
-            //catch { }
-            BackgroundImage = Resources.BonusRound;
             try
             {
                 timer.Start();
@@ -66,16 +53,7 @@ namespace BricksBallCrusher
             catch { }
         }
 
-        //private void timerImg_Tick(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        image = false;
-        //        Invalidate(true);
-        //    }
-        //    catch { }
-        //}
-
+     
         private void timer_Tick(object sender, EventArgs e)
         {
             TouchedBonus();
@@ -93,8 +71,6 @@ namespace BricksBallCrusher
 
         private void BonusLevel_Paint(object sender, PaintEventArgs e)
         {
-            if (image)
-            {
                 e.Graphics.Clear(Color.Black);
                 Pen pen = new Pen(Color.White, 2);
                 e.Graphics.DrawRectangle(pen, leftX, topY, width, height);
@@ -105,8 +81,6 @@ namespace BricksBallCrusher
                 BonusGame.Draw(e.Graphics);
                 lbltext.Text = "Points:";
                 lblPointsBonus.Text = BonusGame.PointsBonus.ToString();
-
-            }
         }
 
         public void BackToGame()
@@ -115,7 +89,6 @@ namespace BricksBallCrusher
             if (ball.isNewGame)
             {
                 timer.Stop();
-                // TimerImg.Stop();
                 SetValueForPoints = BonusGame.PointsBonus;
                 this.DialogResult = DialogResult.OK;
                 ball.isNewGame = false;

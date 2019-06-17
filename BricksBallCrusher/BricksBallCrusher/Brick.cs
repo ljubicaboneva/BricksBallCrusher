@@ -47,18 +47,10 @@ namespace BricksBallCrusher
 
         public void Select(Ball ball)
         {
-
             if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
             {
-
                 ball.velocityY = -ball.velocityY;
                 isTouched = !isTouched;
-            }
-
-            if (ball.Center.X + ball.Radius <= X && ball.Center.X - ball.Radius >= X + Width && ball.Center.Y + ball.Radius <= Y && ball.Center.Y - ball.Radius >= Y + Height)
-            {
-
-                ball.velocityY = -ball.velocityY;
             }
 
         }
