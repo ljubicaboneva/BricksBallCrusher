@@ -63,7 +63,6 @@ namespace BricksBallCrusher
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
 
-
             timer2 = new Timer();
             timer2.Interval = 100;
             timer2.Tick += new EventHandler(timer2_Tick);
@@ -80,12 +79,12 @@ namespace BricksBallCrusher
             RectangleY = this.Height - 110;
             ball = new Ball(new Point(BallX, BallY));
             rectangle = new Rectangle(RectangleX, RectangleY);
-             Misses = 3;
+            Misses = 3;
 
             
         }
-
-        private void timer_Tick(object sender, EventArgs e)
+       
+       private void timer_Tick(object sender, EventArgs e)
         {
             Touched();
             game.Delete();
@@ -141,8 +140,6 @@ namespace BricksBallCrusher
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            timer.Stop();
-            timer.Start();
             if (e.KeyCode == Keys.Left)
             {
                 isMoved = 1;
@@ -169,11 +166,13 @@ namespace BricksBallCrusher
                     rectangle = new Rectangle(RectangleX,RectangleY);
                     isMoved = 0;
                     Misses--;
-
+                    timer.Stop();
                     timer2.Stop();
                     progrssBar.Value = 0;
-                    timer.Start();
+                    timer = new Timer();
                     timer.Interval = 30;
+                    timer.Tick += new EventHandler(timer_Tick);
+                    timer.Start();
                     if (supriseCount <= 4)
                     {
                         lblSuprise.ForeColor = Color.Red;
@@ -250,6 +249,11 @@ namespace BricksBallCrusher
 
         public void Touched()
         {
+            timer.Stop();
+            timer = new Timer();
+            timer.Interval = 30;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
             foreach (Brick b in game.Bricks)
             {
                 b.Select(ball);
@@ -355,6 +359,7 @@ namespace BricksBallCrusher
             if (game.EndGame)
             {
                 timer.Stop();
+                pictureBox1.Visible = true;
                 DialogResult dialogResault = MessageBox.Show(string.Format("Your score is {0}", game.Points), "END GAME", MessageBoxButtons.OK);
                 Menu menu = new Menu();
                 FinalScore final = new FinalScore();
@@ -377,7 +382,7 @@ namespace BricksBallCrusher
             
             supriseCount++;
             randomSuprise = new Random();
-            suprise = randomSuprise.Next(1, 6);
+            suprise = randomSuprise.Next(1, 7);
             if (isClickedSurprise) {
                 if (supriseCount <= 4)
                 {
@@ -415,16 +420,21 @@ namespace BricksBallCrusher
 
                         lblSuprise.ForeColor = Color.Black;
                         timer2.Start();
-                        timer.Interval = 80;
+                        timer.Interval = 100;
                         isClickedSurprise = false;
                     }
                     if (suprise == 5)
                     {
                         Misses++;
                     }
-
-                   
-                }
+                    if(suprise == 6)
+                    {
+                        lblSuprise.ForeColor = Color.Black;
+                        timer2.Start();
+                        ball.Radius = 5;
+                        isClickedSurprise = false;
+                     }
+                 }
                 else
                 {
                     lblSuprise.ForeColor = Color.Black;
@@ -474,7 +484,13 @@ namespace BricksBallCrusher
                     timer.Interval = 30;
                     progrssBar.Value = 0;
                 }
-               
+                if (suprise == 6)
+                {
+                    timer2.Stop();
+                    ball.Radius = 10;
+                    progrssBar.Value = 0;
+                }
+
             }
 
         }

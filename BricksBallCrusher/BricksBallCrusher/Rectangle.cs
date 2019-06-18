@@ -14,6 +14,7 @@ namespace BricksBallCrusher
         public int X { get; set; }
         public int Y { get; set; }
         public Color Color { get; set; }
+     
 
 
         public Rectangle(int x, int y)
@@ -21,7 +22,6 @@ namespace BricksBallCrusher
             Color = Color.White;
             X = x;
             Y = y;
-
         }
 
         public void Draw(Graphics g)
@@ -53,7 +53,7 @@ namespace BricksBallCrusher
 
         public void Rejected(Ball ball)
         {
-            if (ball.Center.X + ball.Radius +1 >= X && ball.Center.X - ball.Radius <= X + Width +1 && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
+            if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
             {
                 ball.velocityY = -ball.velocityY;
             }

@@ -21,13 +21,14 @@ namespace BricksBallCrusher
         public float velocityX;
         public float velocityY;
         public bool isMoreBall { get; set; }
+        Random r;
 
         public Ball(Point p)
         {
             Center = p;
             Color = Color.White;
             Velocity = 10;
-            Random r = new Random();
+            r = new Random();
             isMoreBall = false;
             if (Form1.Path == 1)
             {
@@ -37,22 +38,21 @@ namespace BricksBallCrusher
             else
             {
                 Angle = r.NextDouble() * 2 * Math.PI;
-                while (Angle >= 0.4 * 2 * Math.PI && Angle <= 0.52 * 2 * Math.PI  && Angle >= 0.01 * 2 * Math.PI && Angle <= 0.09 * 2 * Math.PI && Angle >= 0.24 * 2 * Math.PI && Angle <= 0.26 * 2 * Math.PI || Angle >= Math.PI)
+                while (((Angle >= 0.42 * 2 * Math.PI && Angle <= 0.6 * 2 * Math.PI) || (Angle >= 0 * 2 * Math.PI && Angle <= 0.05 * 2 * Math.PI) || (Angle >= 0.24 * 2 * Math.PI && Angle <= 0.26 * 2 * Math.PI)) || (Angle <= Math.PI))
                 {
                     Angle = r.NextDouble() * 2 * Math.PI;
                 }
-               
+
                 velocityX = (float)(Math.Cos(Angle) * Velocity);
                 velocityY = (float)(Math.Sin(Angle) * Velocity);
             }
             isNewGame = false;
-
         }
 
         public void Draw(Graphics g)
         {
             Brush b = new SolidBrush(Color);
-            g.FillEllipse(b, Center.X - Radius, Center.Y - Radius, Radius * 2, Radius * 2);
+            g.FillEllipse(b, Center.X-Radius, Center.Y-Radius, Radius * 2, Radius * 2);
             b.Dispose();
         }
 
@@ -60,6 +60,7 @@ namespace BricksBallCrusher
         {
             int nextX = (int)(Center.X + velocityX);
             int nextY = (int)(Center.Y + velocityY);
+
             int lft = left + Radius;
             int rgt = left + width - Radius;
             int tp = top + Radius;
@@ -67,19 +68,53 @@ namespace BricksBallCrusher
 
             if (nextX <= lft)
             {
-                nextX = lft + (lft - nextX);
-                velocityX = -velocityX;
+                if (Center.Y <= 55)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                    
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
+                else
+                {
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
             }
             if (nextX >= rgt)
             {
-                nextX = rgt - (nextX - rgt);
-                velocityX = -velocityX;
-
+                if (Center.Y <= 55)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                  
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
+                else
+                {
+                    nextX = rgt - (nextX - rgt);
+                    velocityX = -velocityX;
+                }
             }
-            if (nextY <= tp+1)
+            if (nextY <= tp)
             {
-                nextY = tp + (tp - nextY);
-                velocityY = -velocityY;
+                if (Center.X <= 35)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                    nextY = tp + (tp - nextY);
+                    velocityY = -velocityY;
+                }
+                else
+                {
+                    nextY = tp + (tp - nextY);
+                    velocityY = -velocityY;
+                }
             }
 
             if (nextY >= btm)

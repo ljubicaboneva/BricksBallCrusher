@@ -24,6 +24,7 @@ namespace BricksBallCrusher
         int isMoved;
         Timer timer;
         Game game;
+        int flag = 0;
         public static int SetValueForPoints = 0;
 
         public BonusLevel()
@@ -56,15 +57,24 @@ namespace BricksBallCrusher
      
         private void timer_Tick(object sender, EventArgs e)
         {
-            TouchedBonus();
-            BonusGame.Delete();
-            BackToGame();
-            if (isMoved == 1)
+            if (flag >= 50)
             {
-                ball.Move(leftX, topY, width, height);
+                pictureBox1.Visible = false;
+                TouchedBonus();
+                BonusGame.Delete();
+                BackToGame();
+                if (isMoved == 1)
+                {
+                    ball.Move(leftX, topY, width, height);
 
-                rectangle.Rejected(ball);
+                    rectangle.Rejected(ball);
+                }
             }
+            else
+            {
+                flag++;
+            }
+           
             Invalidate(true);
         }
 
