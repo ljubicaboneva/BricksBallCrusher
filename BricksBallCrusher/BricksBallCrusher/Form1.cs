@@ -194,13 +194,11 @@ namespace BricksBallCrusher
                 else if (Misses == 1)
                 {
                     timer.Enabled = false;
-                    timer.Dispose();
+                    
                     DialogResult dialogResault = MessageBox.Show("Do you want to play again?", "GAME OVER", MessageBoxButtons.RetryCancel);
 
                     if (dialogResault == DialogResult.Retry)
                     {
-                       
-
                         timer = new Timer();
                         timer.Interval = 30;
                         timer.Tick += new EventHandler(timer_Tick);
