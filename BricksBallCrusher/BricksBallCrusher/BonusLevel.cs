@@ -98,11 +98,12 @@ namespace BricksBallCrusher
 
             if (ball.isNewGame)
             {
-                timer.Stop();
+                timer.Dispose();
+                timer.Enabled = false;
                 SetValueForPoints = BonusGame.PointsBonus;
                 this.DialogResult = DialogResult.OK;
                 ball.isNewGame = false;
-                this.Close();
+                this.Dispose();
             }
         }
 

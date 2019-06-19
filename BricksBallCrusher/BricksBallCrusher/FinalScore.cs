@@ -27,9 +27,10 @@ namespace BricksBallCrusher
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
+            Menu menu = new Menu();           
             this.Hide();
             menu.ShowDialog();
+            this.Dispose();
             this.Close();
         }
     }

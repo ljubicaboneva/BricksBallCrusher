@@ -24,6 +24,7 @@ namespace BricksBallCrusher
             Form1 form1 = new Form1();
             this.Hide();
             form1.ShowDialog();
+            this.Dispose();
             this.Close();
         }
 
@@ -37,11 +38,13 @@ namespace BricksBallCrusher
             FinalScore final = new FinalScore();
             this.Hide();
             final.ShowDialog();
+            this.Dispose();
             this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            this.Dispose();
             this.Close();
         }
     }
