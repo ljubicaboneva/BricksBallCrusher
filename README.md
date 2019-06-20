@@ -1,12 +1,12 @@
 <b>Bricks Ball Crusher</b>
 <hr>
 
-•	Краток опис на апликацијата
+•<b>	Краток опис на апликацијата</b>
 
 Идејата за нашата апликација произлезе од играта Bricks Ball Crusher, со некои наши модификации и дополнителни функционалности. Целта на апликацијата е да се освојат што е можно повеќе поени со ограничен број на животи. Следат подетални информации во врска со апликацијата.
 <hr>
 
-•	Упатства
+•<b>	Упатства</b>
 
 На почеток, по вклучување на апликацијата се прикажува главно мени на кое има три опции, една за нова игра “New Game”, друга за приказ на вашите поени “You Score”, и трета опција за излез од апликацијата “Exit”.
 
@@ -57,3 +57,134 @@ Two и More се опции кои се за помош на играчот.
 
 <img src="Images/Screenshot_4.png" width=400>
 
+•	<b>Функционалности</b>
+
+Играта е составена од 5 класи и тоа: Ball.cs, Brick.cs, Rectangle.cs, BonusGame.cs, Game.cs.
+
+  ➤Во класата Ball.cs се чуваат информации за топчето, се исцртува топчето со кое играете и се поставува движењето на истото.
+  
+  Функцијата за движење на топчето:
+  
+        public void Move(int left, int top, int width, int height)
+        {
+            int nextX = (int)(Center.X + velocityX);
+            int nextY = (int)(Center.Y + velocityY);
+
+            int lft = left + Radius;
+            int rgt = left + width - Radius;
+            int tp = top + Radius;
+            int btm = top + height - Radius;
+
+            if (nextX <= lft)
+            {
+                if (Center.Y <= 55)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                    
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
+                else
+                {
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
+            }
+            if (nextX >= rgt)
+            {
+                if (Center.Y <= 55)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                  
+                    nextX = lft + (lft - nextX);
+                    velocityX = -velocityX;
+                }
+                else
+                {
+                    nextX = rgt - (nextX - rgt);
+                    velocityX = -velocityX;
+                }
+            }
+            if (nextY <= tp)
+            {
+                if (Center.X <= 35)
+                {
+                    Angle = r.NextDouble() * 2 * Math.PI;
+                    velocityX = (float)(Math.Cos(Angle) * Velocity);
+                    velocityY = (float)(Math.Sin(Angle) * Velocity);
+                    nextY = tp + (tp - nextY);
+                    velocityY = -velocityY;
+                }
+                else
+                {
+                    nextY = tp + (tp - nextY);
+                    velocityY = -velocityY;
+                }
+            }
+
+            if (nextY >= btm)
+            {
+                isNewGame = true;
+            }
+            Center = new Point(nextX, nextY);
+        }
+
+ Оваа функција служи за движење на топчето.Топчето се движи така што на почеток се дава агол со помош на рандом генератор, па потоа со    помош на функции се пресметуваат координатите на X и на Y.Во функцијата има повеке услови со кои се проверува дали топчето допрело до некоја од границите(лево,десно,горе,доле) и доколку тоа е точно се менува насоката на движење на топчето т.е се менуваат координатите X и Y. На крај на фунцкцијата се поставуваат новите координати на топчето.
+ 
+   ➤Во класата Brick.cs се чуваат информации за "циглите" и се означуваат кога истите се допрени од страна на топчето.
+   
+   Функцијата за означување кога циглите се допрени:
+  
+  
+     public void Select(Ball ball)
+        {
+            if (ball.Center.X + ball.Radius >= X && ball.Center.X - ball.Radius <= X + Width && ball.Center.Y + ball.Radius >= Y && ball.Center.Y - ball.Radius <= Y + Height)
+            {
+                ball.velocityY = -ball.velocityY;
+                isTouched = !isTouched;
+            }
+
+        }
+   
+  
+   Оваа функција служи за означување кога една цигла е допрена од страна на топчето.Доколку условот е исполнет т.е циглата е допрена,      тогаш bool променливата IsTouched се поставува на true и исто така се менува насоката на движење на топчето за да не се "рушат" сите 
+   цигли одеднаш.
+ 
+   ➤ Во класата Rectangle.cs се чуваат информации за правоаголникот кој го контролираме, функција за негово движење и функција за          означување кога топчето го допрело.
+   
+   Функцијата за движење на правоаголникот:
+   
+     public void Move(int left, int width, int x)
+        {
+            X += x;
+            int nextX = X;
+
+            int lft = left;
+            int rgt = left + width - Width;
+
+            if (nextX <= lft)
+            {
+                X -= x;
+            }
+            if (nextX >= rgt)
+            {
+                X -= x;
+            }
+        }
+    
+  Во функцијата се поставуваат само новите координати на правоаголникот со придвижување на стрелките од тастатурата.
+  
+  Функцијата која означува кога топчето го допрело правоаголникот е иста со онаа од класата Brick.cs
+  
+  ➤Во класата BonusGame.cs се чува една листа од тип Brick, информации за листата, фунцкција за додавање, бришење и исцртување на         циглите. 
+  
+  ➤Во класата Game.cs се чуваат една листа од тип Brick и две листи од тип Ball, се чуваат информации за листите исто така и функции за   полнење на листите и бришење елементи од нив.
+  
+  <b>Изработиле:</b>   
+  •Љубица Бонева 161069
+  <br>
+  •Сања Пушкарова 161102
