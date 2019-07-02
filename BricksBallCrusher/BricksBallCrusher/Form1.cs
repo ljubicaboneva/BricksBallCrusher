@@ -225,6 +225,13 @@ namespace BricksBallCrusher
                         supriseCount = 0;
                         lblSuprise.ForeColor = Color.Red;
                         isClickedSurprise = true;
+
+                        lblMore.ForeColor = Color.Coral;
+                        lblTwo.ForeColor = Color.Coral;
+
+                        
+
+
                     }
                     else
                     {
@@ -332,8 +339,10 @@ namespace BricksBallCrusher
 
         private void lblTwo_Click(object sender, EventArgs e)
         {
+            
             if (CountTwo == 1 && isMoved == 0)
             {
+                lblTwo.ForeColor = Color.Black;
                 ball_2 = new Ball(new Point(this.Width / 2, this.Height - 120));
                 ball_2.Color = Color.Black;
                 game.AddBall(ball_2);
@@ -346,6 +355,7 @@ namespace BricksBallCrusher
 
         private void lblMore_Click(object sender, EventArgs e)
         {
+            lblMore.ForeColor = Color.Black;
             moreCounter++;
             isClickedMore = true;
             Path = 1;
